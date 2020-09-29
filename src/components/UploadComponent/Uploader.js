@@ -15,23 +15,43 @@ const useStyles = makeStyles({
     fontWeight: "bold",
     "&:hover": {
       backgroundColor: "#f3c800",
-    },
+    }
   },
 });
 
-const Uploader = () => {
+const Uploader = props => {
       const classes = useStyles();
+
+      const uploadHandler = () => {
+        const fileInput = document.getElementById("videoUpload");
+        fileInput.click();
+        fileInput.onchange = function () {
+          props.file(this.files[0]);
+          // console.log(Math.floor(this.files[0].size / 1024 / 1024));
+        };
+      }
+
+
       return (
-        <Box component="div" py="5vh" className="uploadBorderBottom">
+        <Box
+          component="div"
+          py="5vh"
+          className="uploadBorderBottom"
+        >
           <h1>Upload your Video here</h1>
           <br />
           <img src={upload} alt="upload video MIC" />
-          <p>Click on the button or Drag & Drop files here</p>
+          <p>
+            Click on the <b>button</b>{" "}
+          </p>
           <br />
+          <input type="file" id="videoUpload" style={{ display: "none" }} />
           <Button
             variant="contained"
             color="inherit"
             className={classes.uploadButton}
+            id="videoUpload"
+            onClick={uploadHandler}
           >
             Upload Video
           </Button>

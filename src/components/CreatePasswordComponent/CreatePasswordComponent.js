@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 
 const useStyles = makeStyles({
   root: {
-    marginTop: "20vh",
+    padding: "20px",
   },
   heading: {
     fontSize: "25px",
@@ -34,14 +33,29 @@ const useStyles = makeStyles({
     borderRadius: "30px",
     fontWeight: "bold",
     border: "none",
+    cursor: "pointer",
   },
 });
 
-const CreatePasswordComponent = () => {
+const CreatePasswordComponent = props => {
       const classes = useStyles();
+      const [error, setError] = useState(false);
+      const password = useRef();
+      const confirmPassword = useRef();
+      const passwordHandler = (e) => {
+          e.preventDefault();
+          if (password.current.value === confirmPassword.current.value) {
+            props.submit();
+            setError(false);
+          } else {
+            setError("Password does not match");
+          }
+      }
       return (
         <Container maxWidth="sm" className={classes.root}>
           <center>
+            {error && <h4 style={{ color: "red" }}>{error}</h4>}
+            <br />
             <form action="#" className="form">
               <h1 className={classes.heading}>Create your password</h1>
               <br />
@@ -51,11 +65,14 @@ const CreatePasswordComponent = () => {
               </label>
               <br />
               <input
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="* * * * * * * * *"
                 className={classes.input}
+                onChange={(e) => props.password(e.target.value)}
+                minLength="6"
+                ref={password}
               />
 
               <br />
@@ -67,11 +84,14 @@ const CreatePasswordComponent = () => {
               </label>
               <br />
               <input
-                type="text"
+                type="password"
                 id="confirmPassword"
                 name="confirmPassword"
                 placeholder="* * * * * * * * *"
                 className={classes.input}
+                onChange={(e) => props.confirmPassword(e.target.value)}
+                minLength="6"
+                ref={confirmPassword}
               />
 
               <br />
@@ -83,6 +103,7 @@ const CreatePasswordComponent = () => {
                   type="submit"
                   value="Submit"
                   className={classes.submitButton}
+                  onClick={passwordHandler}
                 />
               </center>
             </form>

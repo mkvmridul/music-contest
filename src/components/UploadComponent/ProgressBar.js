@@ -3,6 +3,7 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import playButton from "../../assets/images/play.svg";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles({
@@ -21,33 +22,59 @@ const useStyles = makeStyles({
     height: "5px",
     position: "absolute",
   },
+  submit: {
+    width: "168px",
+    height: "50px",
+    background: "#f3c800",
+    borderRadius: "30px",
+    color: "white",
+    fontWeight: "bold",
+    "&:hover": {
+      backgroundColor: "#121212",
+    },
+  },
 });
 
 const ProgressBar = props => {
       const classes = useStyles();
+      console.log(props.progress);
       return (
-        <Box component="div" className={classes.barWrapper}>
-          <Grid container>
-            <Grid item sm={2} style={{ borderRight: "1px solid #ccc" }}>
-              <img
-                src={playButton}
-                alt="play button"
-                style={{ width: "35%", marginTop: "19px" }}
-              />
-            </Grid>
-            <Grid sm={9} style={{ textAlign: "left" }} item>
-              <Box component="p" pl={2}>
-                Video <b>Creative Designs By Aman.mp4</b> is uploading
-              </Box>
-              <Box component="div" className={classes.bar} ml={2} mb={2}>
-                <span
-                  className={classes.progress}
-                  style={{ width: `${props.progress}` }}
-                ></span>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
+        props.progress && (
+          <>
+            <Box component="div" className={classes.barWrapper}>
+              <Grid container>
+                <Grid item sm={2} style={{ borderRight: "1px solid #ccc" }}>
+                  <img
+                    src={playButton}
+                    alt="play button"
+                    style={{ width: "35%", marginTop: "19px" }}
+                  />
+                </Grid>
+                <Grid sm={9} style={{ textAlign: "left" }} item>
+                  <Box component="p" pl={2}>
+                    Video <b>Creative Designs By {props.fileName}</b> is
+                    uploading
+                  </Box>
+                  <Box component="div" className={classes.bar} ml={2} mb={2}>
+                    <span
+                      className={classes.progress}
+                      style={{ width: `${props.progress}%` }}
+                    ></span>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+            <br />
+            <br />
+            <Button
+              variant="contained"
+              color="inherit"
+              className={classes.submit}
+            >
+              Submit
+            </Button>
+          </>
+        )
       );
 };
 

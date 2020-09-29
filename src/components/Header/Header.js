@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import logo from "../../logo.png";
 import '../../assets/scss/Header.scss';
+import {AuthContext} from '../../context/auth-context';
+import { navigate } from "@reach/router";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles({
   header: {
@@ -38,29 +41,70 @@ const useStyles = makeStyles({
 });
 
 const Header = () => {
+      const authContext = useContext(AuthContext);
       const classes = useStyles();
+      const matches = useMediaQuery("(max-width:600px)");
+
+      const loginHandler = () => {
+        if (!authContext.auth){
+           authContext.loggingHandler();
+        }
+        else{
+          authContext.auth = false;
+          localStorage.removeItem("user");
+          navigate("/");
+        }
+
+      }
+
       return (
-        <Box component="div" className={classes.header} px={8} py={3}>
+        <Box component="div" className={classes.header} px={8} py={3} style={
+          matches ? {
+            padding: "18px 15px"
+          } : null
+        }>
           <Grid container justify="space-between">
-            <img src={logo} alt="logo" xs={4} className={classes.image} />
+            <img src={logo} alt="logo" xs={4} className={classes.image} style={
+          matches ? {
+            width: "116px",
+            height: "45px"
+          } : null
+        }/>
             <Grid item sm={6} lg={6} className="menuGrid">
               <Grid container className={classes.reverseFlex}>
-                <Grid item sm={3} lg={2}>
+                <Grid item sm={3} lg={2} style={
+                      matches ? {
+                        display: "none"
+                      } : null
+                    }>
                   <Button className={classes.activeButton}>Home</Button>
                 </Grid>
-                <Grid item sm={3} lg={2}>
+                <Grid item sm={3} lg={2} style={
+                      matches ? {
+                        display: "none"
+                      } : null
+                    }>
                   <Button className={classes.menuButton}>About Us</Button>
                 </Grid>
-                <Grid item sm={3} lg={2}>
+                <Grid item sm={3} lg={2} style={
+                      matches ? {
+                        display: "none"
+                      } : null
+                    }>
                   <Button className={classes.menuButton}>Contest</Button>
                 </Grid>
-                <Grid item sm={3} lg={2}>
+                <Grid item sm={3} lg={2} style={
+                      matches ? {
+                        zIndex: 1000
+                      } : null
+                    }>
                   <Button
                     variant="contained"
                     color="inherit"
                     className={classes.login}
+                    onClick={()=>loginHandler()}
                   >
-                    Login
+                    {authContext.auth ? "logout" : "login"  }
                   </Button>
                 </Grid>
               </Grid>
