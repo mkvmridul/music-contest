@@ -7,15 +7,19 @@ export const AuthContext = React.createContext({
       logging: false,
       login: () => {},
       loggingHandler: () => {},
-      baseUrl: ""
+      baseUrl: "",
+      loader: false
 });
 
 const AuthContextProvider = props => {
       const [isAuthenticated, setIsAuthenticated] = useState(false);
       const [logging, setLogging] = useState(false);
+      const [loader, setLoader] = useState(false);
       const baseUrl = "http://localhost:3007";
-      const loginHandler = () => {setIsAuthenticated(!isAuthenticated); loggingHandler()};
+      const loginHandler = () => {setIsAuthenticated(!isAuthenticated); };
       const loggingHandler = () => setLogging(!logging);
+      const turnOffLoader = () => setLoader(false);
+      const turnOnLoader = () => setLoader(true);
 
       useEffect(() => {
             if (JSON.parse(localStorage.getItem("user"))) {
@@ -31,7 +35,10 @@ const AuthContextProvider = props => {
                         login: loginHandler,
                         logging: logging,
                         loggingHandler: loggingHandler,
-                        baseUrl
+                        baseUrl,
+                        turnOffLoader,
+                        turnOnLoader,
+                        loader
                   }
             }>
                   {props.children}

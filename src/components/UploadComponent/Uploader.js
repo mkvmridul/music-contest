@@ -39,6 +39,7 @@ const Uploader = props => {
           className="uploadBorderBottom"
         >
           <h1>Upload your Video here</h1>
+          <p style={{color: "red"}}>max file size: 100 MB</p>
           <br />
           <img src={upload} alt="upload video MIC" />
           <p>

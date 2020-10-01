@@ -7,7 +7,7 @@ import music from "../../../assets/images/music.svg";
 import Modal from "../../UI/Modal/Modal";
 import CreatePasswordComponent from "../../CreatePasswordComponent/CreatePasswordComponent";
 import axios from "axios";
-  import { navigate } from "@reach/router";
+import { navigate } from "@reach/router";
 
 
 
@@ -63,6 +63,7 @@ const RegistrationComponent = () => {
 
     const submitHandler = () => {
       if (password.length > 0 && confirmPassword.length > 0) {
+        authContext.turnOnLoader();
         axios
           .post(`${authContext.baseUrl}/user/register`, {
             username: email,
@@ -71,12 +72,14 @@ const RegistrationComponent = () => {
             password: password,
           })
           .then(function (response) {
+            authContext.turnOffLoader();
             console.log(response.data);
             localStorage.setItem("user", JSON.stringify(response.data.data));
-            authContext.auth = true;
+            authContext.login();
             navigate('/upload');
           })
           .catch(function (error) {
+            authContext.turnOffLoader();
             setError(error.response.data.message);
             toggleRegistering();
           });

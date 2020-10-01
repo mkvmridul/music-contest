@@ -52,8 +52,12 @@ const ProgressBar = props => {
                 </Grid>
                 <Grid sm={9} style={{ textAlign: "left" }} item>
                   <Box component="p" pl={2}>
-                    Video <b>Creative Designs By {props.fileName}</b> is
-                    uploading
+                    Video{" "}
+                    <b>
+                      Creative Designs By{" "}
+                      {JSON.parse(localStorage.getItem("user")).name}
+                    </b>{" "}
+                    is uploading
                   </Box>
                   <Box component="div" className={classes.bar} ml={2} mb={2}>
                     <span

@@ -10,13 +10,30 @@ const MainComponent = () => {
       const matches = useMediaQuery("(max-width:600px)");
 
       return (
-        <Box component="div" p={8} >
-          <Grid container justify="space-between" >
-            <Grid item sm={6} xs={12} style={
-                      matches ? {
-                        display: "none"
-                      } : null
-                    }>
+        <Box
+          component="div"
+          p={8}
+          style={
+            matches
+              ? {
+                  padding: "40px",
+                }
+              : null
+          }
+        >
+          <Grid container justify="space-between">
+            <Grid
+              item
+              sm={6}
+              xs={12}
+              style={
+                matches
+                  ? {
+                      display: "none",
+                    }
+                  : null
+              }
+            >
               <TitleComponent />
             </Grid>
             <Grid item lg={3} sm={4} xs={12}>
