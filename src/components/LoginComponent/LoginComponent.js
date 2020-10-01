@@ -84,9 +84,8 @@ const LoginComponent = props => {
                           "user",
                           JSON.stringify(response.data.data)
                         );
-                        authContext.login();
                         authContext.turnOffLoader();
-                        navigate("/upload");
+                        window.location.href = "/upload";
                       })
                       .catch(function (error) {
                         console.log(error.response);
