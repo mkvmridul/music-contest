@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MainComponent from "../MainComponent/MainComponent";
 import UploadComponent from "../UploadComponent";
 import { Router } from "@reach/router";
+import AccountVerifiedComponent from "../AccountVerifiedComponent/AccountVerifiedComponent";
 
 
 const useStyles = makeStyles({
@@ -23,6 +24,7 @@ const HomeComponent = () => {
           <Router>
             <MainComponent path="/" />
             <UploadComponent path="/upload" />
+            <AccountVerifiedComponent path="/verify/user/*" />
           </Router>
         </div>
       );

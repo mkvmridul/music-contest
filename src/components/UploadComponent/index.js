@@ -15,14 +15,15 @@ const UploadComponent = () => {
     useEffect(() => {
         if(!authContext.auth) navigate("/") ;
     },[authContext.auth]);
-
     const selectedFileHandler = (file) => {
       setSelectedFile(file);
       let formData = new FormData();
       formData.append("contestVideo",file);
+     
       axios
         .post(
-          `${authContext.baseUrl}/submit/contest/5f65baa188113427d0cbc4e3/user/5f69e79e05a502835da39485`,
+          // `${authContext.baseUrl}/submit/contest/5f65baa188113427d0cbc4e3/user/5f69e79e05a502835da39485`,
+          `${authContext.baseUrl}/submit/contest/5f65baa188113427d0cbc4e3/user/${JSON.parse(localStorage.getItem("user"))._id}`,
           formData,
           {
             headers: {
@@ -32,16 +33,19 @@ const UploadComponent = () => {
                     let percentCompleted = Math.round(
                       (progressEvent.loaded * 100) / progressEvent.total
                     );
+                    if(percentCompleted === 100) authContext.turnOnLoader()
                     setProgress(percentCompleted);
                     console.log(percentCompleted);
             }
           }
         )
         .then(function (res) {
+          authContext.turnOffLoader();
           console.log({ res: res });
           navigate("/success");
         })
         .catch(function (err) {
+          authContext.turnOffLoader();
           console.log({ err: err });
         });
     }

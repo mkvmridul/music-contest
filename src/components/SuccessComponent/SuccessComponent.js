@@ -41,7 +41,7 @@ const SuccessComponent = () => {
               color="inherit"
               className={classes.button}
             >
-              Back To Site
+              Share with your Friends
             </Button>
           </Container>
         </center>

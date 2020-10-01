@@ -69,6 +69,7 @@ const LoginComponent = props => {
   const loginHandler = e => {
         e.preventDefault();
         if(email.length > 0 && password.length > 0){
+                    authContext.turnOnLoader();
                     axios
                       .post(
                         `${authContext.baseUrl}/user/login`,
@@ -84,10 +85,12 @@ const LoginComponent = props => {
                           JSON.stringify(response.data.data)
                         );
                         authContext.login();
+                        authContext.turnOffLoader();
                         navigate("/upload");
                       })
                       .catch(function (error) {
                         console.log(error.response);
+                        authContext.turnOffLoader();
                         setError(error.response.data.message);
                       });
         }else{
@@ -167,7 +170,7 @@ const LoginComponent = props => {
           <h2>Not a User?</h2>
           <p>Fill up personal information and start journey with us.</p>
           <br />
-          <Button variant="outlined" className={classes.register}>
+          <Button variant="outlined" className={classes.register} onClick={() => window.location.href = "/"}>
             Register
           </Button>
         </Grid>
