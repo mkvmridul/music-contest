@@ -15,9 +15,7 @@ const AuthContextProvider = props => {
       const [isAuthenticated, setIsAuthenticated] = useState(false);
       const [logging, setLogging] = useState(false);
       const baseUrl = "/api";
-      const loginHandler = () => {setIsAuthenticated(!isAuthenticated); loggingHandler()};
       const [loader, setLoader] = useState(false);
-      const baseUrl = "/api";
       const loginHandler = () => {setIsAuthenticated(!isAuthenticated); };
       const loggingHandler = () => setLogging(!logging);
       const turnOffLoader = () => setLoader(false);
