@@ -17,8 +17,7 @@ const TitleComponent = () => {
             Singing Talent
           </h1>
           <p>
-            Some description about the contest and relevant details to promote
-            the form next
+            And get what you deserve
           </p>
         </Box>
       );

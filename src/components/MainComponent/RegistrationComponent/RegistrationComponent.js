@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   heading: {
     fontSize: "25px",
     color: "#f3c800",
-    textAlign: "center",
+    // textAlign: "center",
   },
   input: {
     padding: "15px 20px",
@@ -24,11 +24,12 @@ const useStyles = makeStyles({
     marginTop: "10px",
     fontWeight: "bold",
     background: "#ddd",
+    width: "80%"
   },
   label: {
     fontSize: "13px",
     color: "#333",
-    paddingLeft: "20px",
+    // paddingLeft: "20px",
     letterSpacing: "0.05rem",
   },
   submitButton: {
@@ -95,7 +96,7 @@ const RegistrationComponent = () => {
 
       const classes = useStyles();
       return !authContext.auth ? (
-        <Box component="div" className="border" pt={3} pb={6} px={5}>
+        <Box component="div" className="border" pt={3} pb={6} px={5} >
           <Modal show={registering} closeModal={toggleRegistering}>
             <CreatePasswordComponent
               password={handlePassword}
@@ -103,65 +104,69 @@ const RegistrationComponent = () => {
               submit={submitHandler}
             />
           </Modal>
-          {error && <h4 style={{ color: "red" }}>{error}</h4>}
+          <center>
+              {error && <h4 style={{ color: "red" }}>{error}</h4>}
+          </center>
 
-          <form action="#" className="form">
-            <h1 className={classes.heading}>Register Here</h1>
-            <label htmlFor="name" className={classes.label}>
-              Your Name:
-            </label>
-            <br />
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Your Name"
-              className={classes.input}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <br />
-            <br />
-            <label htmlFor="email" className={classes.label}>
-              Email:
-            </label>
-            <br />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your Email Id"
-              className={classes.input}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <br />
-            <br />
-            <label htmlFor="mobile" className={classes.label}>
-              Mobile:
-            </label>
-            <br />
-            <input
-              type="number"
-              id="mobile"
-              name="mobile"
-              placeholder="Your Mobile Id"
-              className={classes.input}
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-            />
-            <br />
-            <br />
-            <br />
-            <center>
+          <center>
+            <form action="#" className="form">
+              <h1 className={classes.heading}>CREATE ACCOUNT</h1>
+              <label htmlFor="name" className={classes.label}>
+                Your Name:
+              </label>
+              <br />
               <input
-                type="submit"
-                value="Submit"
-                className={classes.submitButton}
-                onClick={registrationHandler}
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+                className={classes.input}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
-            </center>
-          </form>
+              <br />
+              <br />
+              <label htmlFor="email" className={classes.label}>
+                Email:
+              </label>
+              <br />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email Address"
+                className={classes.input}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <br />
+              <br />
+              <label htmlFor="mobile" className={classes.label}>
+                Mobile Number:
+              </label>
+              <br />
+              <input
+                type="text"
+                id="mobile"
+                name="mobile"
+                placeholder="Mobile Number"
+                className={classes.input}
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+              />
+              <br />
+              <br />
+              <br />
+              <center>
+                <input
+                  type="submit"
+                  value="Register Now"
+                  className={classes.submitButton}
+                  onClick={registrationHandler}
+                />
+              </center>
+            </form>
+          </center>
         </Box>
       ) : (
         <img

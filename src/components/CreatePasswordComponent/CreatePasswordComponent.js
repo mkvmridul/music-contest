@@ -101,7 +101,7 @@ const CreatePasswordComponent = props => {
               <center>
                 <input
                   type="submit"
-                  value="Submit"
+                  value="Create Password"
                   className={classes.submitButton}
                   onClick={passwordHandler}
                 />

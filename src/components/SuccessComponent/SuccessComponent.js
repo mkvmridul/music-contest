@@ -40,8 +40,9 @@ const SuccessComponent = () => {
               variant="contained"
               color="inherit"
               className={classes.button}
+              onClick = {() => window.location.href = 'https://imjo.in/45ht55'}
             >
-              Share with your Friends
+              Pay Now
             </Button>
           </Container>
         </center>

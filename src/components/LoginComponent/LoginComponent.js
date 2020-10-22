@@ -26,6 +26,7 @@ const useStyles = makeStyles({
     marginTop: "10px",
     fontWeight: "bold",
     background: "#ddd",
+    width: "60%"
   },
   label: {
     fontSize: "13px",
@@ -170,7 +171,7 @@ const LoginComponent = props => {
           <p>Fill up personal information and start journey with us.</p>
           <br />
           <Button variant="outlined" className={classes.register} onClick={() => window.location.href = "/"}>
-            Register
+            CREATE ACCOUNT
           </Button>
         </Grid>
       </Grid>

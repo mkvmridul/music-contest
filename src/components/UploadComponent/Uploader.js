@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 
 const Uploader = props => {
       const classes = useStyles();
+      
 
       const uploadHandler = () => {
         const fileInput = document.getElementById("videoUpload");
@@ -30,6 +31,10 @@ const Uploader = props => {
           // console.log(Math.floor(this.files[0].size / 1024 / 1024));
         };
       }
+
+      // props.disableSubmit = arg => {
+      //     setSubmitButton(false);
+      // }
 
 
       return (
@@ -42,9 +47,10 @@ const Uploader = props => {
           <p style={{color: "red"}}>max file size: 100 MB</p>
           <br />
           <img src={upload} alt="upload video MIC" />
-          <p>
+          {/* <p>
             Click on the <b>button</b>{" "}
-          </p>
+          </p> */}
+          <br />
           <br />
           <input type="file" id="videoUpload" style={{ display: "none" }} />
           <Button
@@ -53,8 +59,9 @@ const Uploader = props => {
             className={classes.uploadButton}
             id="videoUpload"
             onClick={uploadHandler}
+            disabled={!props.submitButton}
           >
-            Upload Video
+            Submit Video
           </Button>
         </Box>
       );

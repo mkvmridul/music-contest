@@ -14,7 +14,7 @@ export const AuthContext = React.createContext({
 const AuthContextProvider = props => {
       const [isAuthenticated, setIsAuthenticated] = useState(false);
       const [logging, setLogging] = useState(false);
-      const baseUrl = "/api";
+      const baseUrl = "http://localhost:3007";
       const [loader, setLoader] = useState(false);
       const loginHandler = () => {setIsAuthenticated(!isAuthenticated); };
       const loggingHandler = () => setLogging(!logging);

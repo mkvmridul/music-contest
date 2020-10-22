@@ -8,10 +8,17 @@ import axios from "axios";
 
 let file = "";
 
+
 const UploadComponent = () => {
   const authContext = useContext(AuthContext);
+  const [submitButton, setSubmitButton] = useState(true);
   const [selectedFile, setSelectedFile] = useState([]);
   const [progress, setProgress] = useState(null);
+     
+  const disableSubmitHandler = () => {
+        setSubmitButton(false);
+  }
+
     useEffect(() => {
         if(!authContext.auth) navigate("/") ;
     },[authContext.auth]);
@@ -19,7 +26,7 @@ const UploadComponent = () => {
       setSelectedFile(file);
       let formData = new FormData();
       formData.append("contestVideo",file);
-     
+      disableSubmitHandler();
       axios
         .post(
           // `${authContext.baseUrl}/submit/contest/5f65baa188113427d0cbc4e3/user/5f69e79e05a502835da39485`,
@@ -56,7 +63,7 @@ const UploadComponent = () => {
       return (
         <center>
           <Container maxWidth="sm">
-            <Uploader file={selectedFileHandler} />
+            <Uploader file={selectedFileHandler} disableSubmit={disableSubmitHandler}  submitButton={submitButton}/>
             <br />
             <br />
             <div id="container">

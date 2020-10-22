@@ -54,7 +54,7 @@ const ProgressBar = props => {
                   <Box component="p" pl={2}>
                     Video{" "}
                     <b>
-                      Creative Designs By{" "}
+                      Level 1 Video By{" "}
                       {JSON.parse(localStorage.getItem("user")).name}
                     </b>{" "}
                     is uploading
@@ -70,13 +70,13 @@ const ProgressBar = props => {
             </Box>
             <br />
             <br />
-            <Button
+            {/* <Button
               variant="contained"
               color="inherit"
               className={classes.submit}
             >
               Submit
-            </Button>
+            </Button> */}
           </>
         )
       );

@@ -36,7 +36,7 @@ const MainComponent = () => {
             >
               <TitleComponent />
             </Grid>
-            <Grid item lg={3} sm={4} xs={12}>
+            <Grid item lg={4} sm={4} xs={12}>
               <RegistrationComponent />
             </Grid>
           </Grid>

@@ -87,9 +87,11 @@ const Header = () => {
                   : null
               }
             />
-            <Grid item sm={6} lg={6} className="menuGrid">
+            <Grid item sm={3}
+            //  lg={6} 
+             className="menuGrid">
               <Grid container className={classes.reverseFlex}>
-                <Grid
+                {/* <Grid
                   item
                   sm={3}
                   lg={2}
@@ -145,11 +147,11 @@ const Header = () => {
                   >
                     Contest
                   </Button>
-                </Grid>
+                </Grid> */}
                 <Grid
                   item
-                  sm={3}
-                  lg={2}
+                  // sm={3}
+                  // lg={2}
                   style={
                     matches
                       ? {
