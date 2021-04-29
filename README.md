@@ -1,1 +1,1 @@
-copyright @ADMERE SELVYN PRIVATE LIMITED
+Music contest ReactJS application
